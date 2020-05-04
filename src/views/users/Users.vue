@@ -1,6 +1,5 @@
 <template>
     <section class="main-section">
-        <h2>Users</h2>
         <app-users-navigation />
         <router-view />
     </section>

@@ -23,26 +23,5 @@
     }
 </script>
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
-    main {
-        width: 760px;
-    }
-    ul {
-        padding: 0;
-    }
-    #app {
-        margin: 60px auto;
-        width: 960px;
-    }
-
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-    }
-    .main-section {
-        padding: 0 20px;
-    }
-</style>
+<style src="./assets/css/normalize.css" />
+<style src="./assets/css/main.css" />
