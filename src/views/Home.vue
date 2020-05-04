@@ -1,16 +1,14 @@
 <template>
-  <div class="home">
-
-  </div>
+    <section class="main-section">
+        <h2>Home</h2>
+    </section>
 </template>
 
 <script>
-// @ is an alias to /src
+    // @ is an alias to /src
 
-export default {
-  name: "Home",
-  components: {
-
-  }
-};
+    export default {
+        name: "Home",
+        components: {}
+    };
 </script>
