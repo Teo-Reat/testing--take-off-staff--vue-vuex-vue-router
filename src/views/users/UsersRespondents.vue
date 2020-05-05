@@ -2,17 +2,10 @@
     <div class="user-item">
         <h2>Respondents</h2>
 
-        <div v-for="(condition, index) in filteredConditions" :key="index">
-            <h3>{{ condition.description }}</h3>
-            <select v-show="filteredConditionsRevert.length">
-                <option v-for="(conditionOption, indexOption) in conditions"
-                        :value="conditionOption.description"
-                        :key="indexOption">
-                    {{ conditionOption.description }}/{{ conditionOption.id }}
-                </option>
-            </select>
-            <button @click.prevent="condition.show = false">Delete</button>
-        </div>
+        <condition :condition="condition"
+                   :filtered-conditions-revert="filteredConditionsRevert"
+                   @add-range="addRange"
+                   v-for="(condition, index) in filteredConditions" :key="index" />
 
         <section class="add-condition-popup" v-show="popupShow">
             <div    v-for="(condition, index) in filteredConditionsRevert"
@@ -22,12 +15,17 @@
             </div>
         </section>
 
-        <button @click="popupShow = !popupShow">Add condition</button>
+        <button @click="popupShow = !popupShow" v-show="filteredConditionsRevert.length">Add condition</button>
     </div>
 </template>
 
 <script>
+    import Condition from "../../components/Condition";
+
     export default {
+        components: {
+            Condition
+        },
         data () {
             return {
                 popupShow: false,
@@ -44,9 +42,7 @@
                         show: false,
                         description: 'Age block',
                         iterator: 1,
-                        ranges: {
-                            0: { from: 0, to: 0 }
-                        }
+                        ranges: [{ from: 0, to: 0 }]
                     },
                     {
                         id: 2,
@@ -65,7 +61,7 @@
                         description: 'Status block',
                         status: [
                         'Active',
-                        'Disabled'
+                        'Blocked'
                     ]}
                 ]
             }
@@ -75,6 +71,9 @@
                 this.conditions[index].show = true;
                 this.popupShow = false
             },
+            addRange () {
+                this.conditions[1].ranges.push({ from: 0, to: 0 })
+            }
         },
         computed: {
             filteredConditions () {
@@ -82,9 +81,6 @@
             },
             filteredConditionsRevert () {
                 return this.conditions.filter(c => !c.show)
-            },
-            changeCondition () {
-                // this.
             }
         }
     }
